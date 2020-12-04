@@ -6,6 +6,7 @@
 *.dylib
 *.tfstate
 *.tfstate.backup
+tf.plan
 
 # Test binary, built with `go test -c`
 *.test
