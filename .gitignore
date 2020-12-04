@@ -4,6 +4,8 @@
 *.dll
 *.so
 *.dylib
+*.tfstate
+*.tfstate.backup
 
 # Test binary, built with `go test -c`
 *.test
@@ -15,5 +17,4 @@
 # vendor/
 
 build/
-
 .terraform/
