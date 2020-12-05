@@ -10,8 +10,7 @@
   "highIntentConfidence": 0.8,
   "lgTemplates": [
     "# FallbackResponse",
-    "- Add your fallback message here",
-    "Test FallBack"
+    "- Add your fallback message here"
   ],
   "lgTemplatesMap": {
     "# FallbackResponse": [
@@ -67,8 +66,7 @@
         "What can you do?",
         "How can I start?",
         "Hello",
-        "Hi",
-        "Hello World"
+        "Hi"
       ],
       "multiTurnExamples": []
     }

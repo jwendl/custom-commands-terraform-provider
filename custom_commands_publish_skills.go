@@ -20,21 +20,21 @@ func customCommandsPublishSkills() *schema.Resource {
 		Delete: customCommandsPublishSkillsDelete,
 
 		Schema: map[string]*schema.Schema{
-			"location": &schema.Schema{
+			"location": {
 				Type:     schema.TypeString,
 				Required: true,
 			},
 
-			"custom_commands_speech_key": &schema.Schema{
+			"custom_commands_speech_key": {
 				Type:     schema.TypeString,
 				Required: true,
 			},
 
-			"custom_commands_speech_app_id": &schema.Schema{
+			"custom_commands_speech_app_id": {
 				Type:     schema.TypeString,
 				Required: true,
 			},
-			"skills_file_md5": &schema.Schema{
+			"skills_file_md5": {
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Required: true,
@@ -114,7 +114,7 @@ func customCommandsPublishSkillsRead(d *schema.ResourceData, m interface{}) erro
 }
 
 func customCommandsPublishSkillsUpdate(d *schema.ResourceData, m interface{}) error {
- 	return nil
+	return nil
 }
 
 func customCommandsPublishSkillsDelete(d *schema.ResourceData, m interface{}) error {

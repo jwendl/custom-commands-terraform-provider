@@ -35,14 +35,17 @@ resource "azurerm_cognitive_account" "luis_authoring" {
 }
 
 resource "azurecc_custom_commands_project" "ccp" {
-  name                                 = var.custom_commands_project_name
-  location                             = var.cc_resource_group_location
-  resource_group_name                  = var.cc_resource_group_name
-  subscription_id                      = data.azurerm_subscription.current.subscription_id
-  custom_commands_speech_key           = azurerm_cognitive_account.speech.primary_access_key
-  custom_commands_speech_luis_id       = azurerm_cognitive_account.luis_authoring.id
-  custom_commands_speech_luis_key      = azurerm_cognitive_account.luis_authoring.primary_access_key
-  custom_commands_speech_luis_location = azurerm_cognitive_account.luis_authoring.location
+  name                                  = var.custom_commands_project_name
+  location                              = var.cc_resource_group_location
+  resource_group_name                   = var.cc_resource_group_name
+  subscription_id                       = data.azurerm_subscription.current.subscription_id
+  custom_commands_speech_key            = azurerm_cognitive_account.speech.primary_access_key
+  custom_commands_speech_luisa_id       = azurerm_cognitive_account.luis_authoring.id
+  custom_commands_speech_luisa_key      = azurerm_cognitive_account.luis_authoring.primary_access_key
+  custom_commands_speech_luisa_location = azurerm_cognitive_account.luis_authoring.location
+  custom_commands_speech_luisp_id       = azurerm_cognitive_account.luis_prediction.id
+  custom_commands_speech_luisp_key      = azurerm_cognitive_account.luis_prediction.primary_access_key
+  custom_commands_speech_luisp_location = azurerm_cognitive_account.luis_prediction.location
 }
 
 resource "azurecc_custom_commands_skills" "ccs" {

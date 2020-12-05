@@ -17,27 +17,27 @@ func customCommandsSkills() *schema.Resource {
 		Delete: customCommandsSkillsDelete,
 
 		Schema: map[string]*schema.Schema{
-			"location": &schema.Schema{
+			"location": {
 				Type:     schema.TypeString,
 				Required: true,
 			},
 
-			"custom_commands_speech_key": &schema.Schema{
+			"custom_commands_speech_key": {
 				Type:     schema.TypeString,
 				Required: true,
 			},
 
-			"custom_commands_speech_app_id": &schema.Schema{
+			"custom_commands_speech_app_id": {
 				Type:     schema.TypeString,
 				Required: true,
 			},
 
-			"skills_file_path": &schema.Schema{
+			"skills_file_path": {
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Required: true,
 			},
-			"skills_file_md5": &schema.Schema{
+			"skills_file_md5": {
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Required: true,

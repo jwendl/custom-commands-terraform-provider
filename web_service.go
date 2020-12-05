@@ -2,10 +2,14 @@ package main
 
 import (
 	"bytes"
+	"context"
 	"fmt"
 	"log"
 	"net/http"
 	"net/http/httputil"
+
+	"github.com/Azure/azure-sdk-for-go/sdk/azcore"
+	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 )
 
 // CallWebService - calls a web service
@@ -13,6 +17,19 @@ func CallWebService(basePath string, method string, apiKey string, expectedStatu
 	client := http.Client{}
 
 	var emptyResponse = &http.Response{}
+
+	credentialOptions := azidentity.DefaultAzureCLICredentialOptions()
+	tokenProvider, errorMessage := azidentity.NewAzureCLICredential(&credentialOptions)
+	if errorMessage != nil {
+		return emptyResponse, fmt.Errorf("An error happened getting instance of NewAzureCLICredential: %+v", errorMessage)
+	}
+
+	tokenRequestOptions := azcore.TokenRequestOptions{Scopes: []string{"https://management.core.windows.net/"}}
+	accessToken, errorMessage := tokenProvider.GetToken(context.TODO(), tokenRequestOptions)
+	if errorMessage != nil {
+		return emptyResponse, fmt.Errorf("An error happened fetching access token: %+v", errorMessage)
+	}
+
 	request, errorMessage := http.NewRequest(method, basePath, bytes.NewBuffer(data))
 	if errorMessage != nil {
 		return emptyResponse, fmt.Errorf("An error happened with http.NewRequest: %+v", errorMessage)
@@ -20,6 +37,7 @@ func CallWebService(basePath string, method string, apiKey string, expectedStatu
 
 	request.Header.Add("Content-Type", "application/json")
 	request.Header.Add("Ocp-Apim-Subscription-Key", apiKey)
+	request.Header.Add("Arm-Token", accessToken.Token)
 	request.Header.Add("User-Agent", "golang client")
 
 	requestDump, errorMessage := httputil.DumpRequest(request, true)
