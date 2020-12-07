@@ -33,8 +33,6 @@ resource "azurerm_cognitive_account" "luis_authoring" {
 resource "azurecc_custom_commands_project" "ccp" {
     name                                  = var.custom_commands_project_name
     location                              = azurerm_resource_group.rg.location
-    resource_group_name                   = azurerm_resource_group.rg.name
-    subscription_id                       = data.azurerm_subscription.current.subscription_id
     custom_commands_speech_key            = azurerm_cognitive_account.speech.primary_access_key
     custom_commands_speech_luisa_id       = azurerm_cognitive_account.luis_authoring.id
     custom_commands_speech_luisa_key      = azurerm_cognitive_account.luis_authoring.primary_access_key
